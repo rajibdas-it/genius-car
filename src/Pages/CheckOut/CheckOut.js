@@ -30,7 +30,12 @@ const CheckOut = () => {
       body: JSON.stringify(order),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.acknowledged) {
+          alert("Your order placed successfully. Thank you.");
+          form.reset();
+        }
+      });
   };
   return (
     <div className="my-10">
