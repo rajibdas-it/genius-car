@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const TableRow = ({ order, handleDelete }) => {
-  const { _id, service, serviceName, price, customer, phone } = order;
+const TableRow = ({ order, handleDelete, handleStatusUpdate }) => {
+  const { _id, service, serviceName, price, customer, phone, status } = order;
   const [orderService, setOrderService] = useState();
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const TableRow = ({ order, handleDelete }) => {
       .then((res) => res.json())
       .then((data) => setOrderService(data));
   }, [service]);
-
+  //   /orders/:id
   return (
     <tr>
       <th>
@@ -44,7 +44,12 @@ const TableRow = ({ order, handleDelete }) => {
       </td>
       <td>Purple</td>
       <th>
-        <button className="btn btn-ghost btn-xs">details</button>
+        <button
+          className="btn btn-ghost btn-xs"
+          onClick={() => handleStatusUpdate(_id)}
+        >
+          {status}
+        </button>
       </th>
     </tr>
   );

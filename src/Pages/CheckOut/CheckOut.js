@@ -12,6 +12,7 @@ const CheckOut = () => {
     const email = user?.email || "unregistered";
     const phone = form.phone.value;
     const message = form.message.value;
+    const status = "Pending";
 
     const order = {
       service: _id,
@@ -21,6 +22,7 @@ const CheckOut = () => {
       email,
       phone,
       message,
+      status,
     };
     fetch("http://localhost:5000/services", {
       method: "POST",
